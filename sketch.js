@@ -4,11 +4,15 @@ var h = window.innerHeight - 40;
 var g = 0.3;
 var elements = [];
 var hasnumber = 0;
+var bounce = 0.75;
+var friction = 0.999;
 
 function setup() {
 	createCanvas(w, h);
-  elements.push(new Ball(w/2,h/2));
-  elements.push(new Line(100,h-100,w-100,h-100));
+  elements.push(new Ball(w/3,h/2));
+  elements.push(new Line(100,h-300,w-100,h-100));
+  elements.push(new Line(800,000,800,10000));
+   elements.push(new Line(0,100,600,100));
 }
 
 function draw()	{
@@ -30,31 +34,16 @@ function draw()	{
 
 
 
-function vector(x, y) {
-  this.x = x;
-  this.y = y;
 
-  this.set = function(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-  this.add = function(v){
-    this.x += v.x;
-    this.y += v.y;
-  }
-  this.sub = function(v){
-    this.x -= v.x;
-    this.y -= v.y;
-  }
-  this.inc = function(a){
-    this.x *= a;
-    this.y *= a;
-  }
-}
-
+/*
 function abs(n){
   if(n>=0) return n;
   else return -n;
+}
+*/
+
+function round2(n,p){
+	return round(n*pow(10,p))/pow(10,p);
 }
 
 function distance_point_line(x0,y0,x1,y1,x2,y2){
