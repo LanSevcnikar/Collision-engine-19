@@ -25,11 +25,19 @@ function Ball(x, y, vx, vy) {
                     if(this.loc.x < maxx && this.loc.x > minx && this.loc.y < maxy && this.loc.y > miny){
                         let dist = distance_point_line(this.loc.x,this.loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
                         if (dist <= this.r) {
-                            while(dist < this.r){
-                                dist = distance_point_line(this.loc.x,this.loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
-                                let pt = new vector(this.v.x,this.v.y);
-                                pt.inc(-0.001);
-                                this.loc.add(pt);
+                            if (dist < this.r) {
+                                let loc = new vector(this.loc.x,this.loc.y);
+                                let d1 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
+                                let nv = new vector(elements[i].l2.y-elements[i].l1.y, elements[i].l1.x-elements[i].l2.x);
+                                nv.inc(0.01);
+                                loc.add(nv);
+                                let d2 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
+                                if(d1 > d2) nv.inc(-1);
+                                nv.inc(0.1);
+                                while(dist < this.r){
+                                    this.loc.add(nv);
+                                    dist = distance_point_line(this.loc.x,this.loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
+                                }
                             }
 
                             let vzporedno = new vector (-elements[i].l1.x+elements[i].l2.x, -elements[i].l1.y+elements[i].l2.y);
@@ -60,11 +68,11 @@ function Ball(x, y, vx, vy) {
                             pravokotno.inc(bounce);
 
                             let loc = new vector(this.loc.x,this.loc.y);
-                            let d1 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y)
+                            let d1 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
                             let nv = new vector(pravokotno.x+vzporedno.x,pravokotno.y+vzporedno.y);
                             nv.inc(0.01);
                             loc.add(nv);
-                            let d2 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y)
+                            let d2 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
                             if(d1 > d2) pravokotno.inc(-1);
                             this.v.set(pravokotno.x+vzporedno.x,pravokotno.y+vzporedno.y);
                         }
