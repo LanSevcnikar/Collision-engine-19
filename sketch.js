@@ -13,8 +13,6 @@ function setup() {
 }
 
 function draw()	{
-	//frameRate(2);
-	//console.log(elements);
 	background(51);
 	stroke(230);
 	mouse();
@@ -22,23 +20,12 @@ function draw()	{
 		if(elements[i].type == "ball"){
 			elements[i].show();
 			elements[i].update();
-			}else{
-				elements[i].show();
-			}
+		}else{
+			elements[i].show();
 		}
 	}
-
-
-
-
-
-
-	/*
-	function abs(n){
-	if(n>=0) return n;
-	else return -n;
 }
-*/
+
 
 function round2(n,p){
 	return round(n*pow(10,p))/pow(10,p);
