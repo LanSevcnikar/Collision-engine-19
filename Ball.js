@@ -3,7 +3,7 @@ function Ball(x, y) {
     this.hash = hasnumber;
     hasnumber += 1;
     this.loc = new vector(x,y);
-    this.v = new vector(0,0);
+    this.v = new vector(16,-2);
     this.a = new vector(0,0);
     this.r = 12;
 
@@ -59,7 +59,13 @@ function Ball(x, y) {
                             vzporedno.inc(friction);
                             pravokotno.inc(bounce);
 
-                            //line(this.loc.x,this.loc.y,this.loc.x+(pravokotno.x+vzporedno.x)*20,this.loc.y+(pravokotno.y+vzporedno.y)*20),
+                            let loc = new vector(this.loc.x,this.loc.y);
+                            let d1 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y)
+                            let nv = new vector(pravokotno.x+vzporedno.x,pravokotno.y+vzporedno.y);
+                            nv.inc(0.01);
+                            loc.add(nv);
+                            let d2 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y)
+                            if(d1 > d2) pravokotno.inc(-1);
                             this.v.set(pravokotno.x+vzporedno.x,pravokotno.y+vzporedno.y);
                         }
                     }

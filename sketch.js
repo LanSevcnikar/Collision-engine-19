@@ -12,9 +12,9 @@ function setup() {
 	elements.push(new Ball(w/1.5,h/2));
 	elements.push(new Line(100,h-300,w-100,h-100));
 	elements.push(new Line(w-100,h-500,400,h-400));
-	elements.push(new Line(800,1400,800,400));
+	elements.push(new Line(800,400,800,2400));
 	elements.push(new Line(300,400,300,1400));
-	elements.push(new Line(0,100,600,100));
+	elements.push(new Line(600,100,0,100));
 }
 
 function draw()	{
