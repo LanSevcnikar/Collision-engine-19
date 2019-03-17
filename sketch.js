@@ -5,7 +5,7 @@ var g = 0.3;
 var elements = [];
 var hasnumber = 0;
 var bounce = 0.75;
-var friction = 0.8;
+var friction = 0.95;
 
 function setup() {
 	mouse_pressed_before = false;

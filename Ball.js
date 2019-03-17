@@ -33,7 +33,7 @@ function Ball(x, y, vx, vy) {
                                 loc.add(nv);
                                 let d2 = distance_point_line(loc.x,loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
                                 if(d1 > d2) nv.inc(-1);
-                                nv.inc(0.1);
+                                nv.inc(0.01);
                                 while(dist < this.r){
                                     this.loc.add(nv);
                                     dist = distance_point_line(this.loc.x,this.loc.y,elements[i].l1.x,elements[i].l1.y,elements[i].l2.x,elements[i].l2.y);
