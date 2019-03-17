@@ -1,9 +1,9 @@
-function Ball(x, y) {
+function Ball(x, y, vx, vy) {
     this.type = "ball";
     this.hash = hasnumber;
     hasnumber += 1;
     this.loc = new vector(x,y);
-    this.v = new vector(16,-2);
+    this.v = new vector(vx,vy);
     this.a = new vector(0,0);
     this.r = 12;
 
