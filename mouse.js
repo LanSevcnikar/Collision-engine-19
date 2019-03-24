@@ -16,9 +16,9 @@ function mouse() {
 		mouse_y_2 = mouseY;
 		line(mouse_x_1,mouse_y_1,mouse_x_2,mouse_y_2);
 	}else if (!mouseIsPressed && mouse_pressed_before){
-		if(mouse_type === LEFT){
+		if(mouse_type === CENTER){
 			elements.push(new Line(mouse_x_1,mouse_y_1,mouse_x_2,mouse_y_2));
-		}else if(mouse_type === CENTER){
+		}else if(mouse_type === LEFT){
 			elements.push(new Ball(mouse_x_1,mouse_y_1,(mouse_x_1-mouse_x_2)*0.05,(mouse_y_1-mouse_y_2)*0.05));
 		}
 		mouse_pressed_before = false;

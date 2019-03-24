@@ -6,9 +6,14 @@ var elements = [];
 var hasnumber = 0;
 var bounce = 0.75;
 var friction = 0.95;
+var air_friction = 0.99;
 
 function setup() {
 	mouse_pressed_before = false;
+	elements.push(new Line(10,10,w-10,10));
+	elements.push(new Line(10,10,10,h-10));
+	elements.push(new Line(w-10,10,w-10,h-10));
+	elements.push(new Line(10,h-10,h-10,h-10));
 	createCanvas(w, h);
 }
 
@@ -16,10 +21,12 @@ function draw()	{
 	background(51);
 	stroke(230);
 	mouse();
+	//console.log(elements);
 	for (let i = 0; i < elements.length; i++) {
 		if(elements[i].type == "ball"){
 			elements[i].show();
-			elements[i].update();
+			//let grav = new vector(0,g);
+			elements[i].update(new vector(0,0));
 		}else{
 			elements[i].show();
 		}
