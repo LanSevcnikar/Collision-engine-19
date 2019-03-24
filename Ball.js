@@ -78,6 +78,43 @@ function Ball(x, y, vx, vy) {
                   }
                }
             }
+            else if(elements[i].type == "ball"){
+               let dist = distance_point_point(this.loc.x,this.loc.y,elements[i].loc.x,elements[i].loc.y);
+               if (dist <= elements[i].r+this.r){
+                  let newV = new vector(this.loc.x-elements[i].loc.x,this.loc.y-elements[i].loc.y);
+                  newV.inc(0.01);
+                  while(elements[i].r+this.r >= distance_point_point(this.loc.x,this.loc.y,elements[i].loc.x,elements[i].loc.y)){
+                     this.loc.add(newV);
+                  }
+                  let vzporedno = new vector(this.loc.x-elements[i].loc.x,this.loc.y-elements[i].loc.y);
+                  let pravokotno = new vector(this.loc.y-elements[i].loc.y,this.loc.x-elements[i].loc.x);
+
+                  let x1 = this.v.x;
+                  let y1 = this.v.y;
+                  let x2 = elements[i].loc.x-this.loc.x;
+                  let y2 = elements[i].loc.y-this.loc.y;
+
+                  let mag = sqrt(x1*x1+y1*y1);
+                  let magV = mag;
+                  let magL = sqrt(x2*x2+y2*y2);
+                  let calc = x1 * x2 + y1 * y2;
+                  let alfa = PI-acos((calc)/(magL*magV));
+
+                  let vzpMag = mag;
+                  let praMag = mag;
+                  vzpMag *= cos(alfa);
+                  praMag *= sin(alfa);
+                  round2(vzpMag,6);
+                  round2(praMag,6);
+
+                  vzporedno.setMag(vzpMag);
+                  pravokotno.setMag(praMag);
+
+                  this.v.inc(0);
+                  this.v.add(pravokotno);
+                  elements[i].update(vzporedno);
+               }
+            }
          }
       }
       line(this.loc.x,this.loc.y,this.loc.x+this.v.x*15,this.loc.y+this.v.y*15);

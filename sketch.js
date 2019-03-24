@@ -48,3 +48,7 @@ function distance_point_line(x0,y0,x1,y1,x2,y2){
 	let dist = (abs(pt1-pt2+pt3-pt4)/sqrt(pt5+pt6));
 	return dist;
 }
+
+function distance_point_point(x1,y1,x2,y2){
+	return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+}
