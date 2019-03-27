@@ -7,6 +7,7 @@ var hasnumber = 0;
 var bounce = 0.75;
 var friction = 0.95;
 var air_friction = 0.99;
+var ballballbounce = 0.2;
 
 function setup() {
 	mouse_pressed_before = false;
@@ -50,5 +51,13 @@ function distance_point_line(x0,y0,x1,y1,x2,y2){
 }
 
 function distance_point_point(x1,y1,x2,y2){
+	return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+}
+
+function distance_vec_vec(v1,v2){
+	let x1 = v1.x;
+	let x2 = v2.x;
+	let y1 = v1.y;
+	let y2 = v2.y;
 	return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
 }

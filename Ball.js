@@ -79,10 +79,14 @@ function Ball(x, y, vx, vy) {
                }
             }
             else if(elements[i].type == "ball"){
-               let dist = distance_point_point(this.loc.x,this.loc.y,elements[i].loc.x,elements[i].loc.y);
+               let dist = distance_vec_vec(this.loc,elements[i].loc);
                if (dist <= elements[i].r+this.r){
                   let newV = new vector(this.loc.x-elements[i].loc.x,this.loc.y-elements[i].loc.y);
-                  newV.inc(0.01);
+                  newV.inc(0.001);
+                  let newL = new vector(this.loc.x,this.loc.y);
+                  newL.add(newV);
+                  let dist2 = distance_vec_vec(newL,elements[i].loc);
+                  if(dist2 < dist) newV.inc(-1);
                   while(elements[i].r+this.r >= distance_point_point(this.loc.x,this.loc.y,elements[i].loc.x,elements[i].loc.y)){
                      this.loc.add(newV);
                   }
@@ -110,8 +114,28 @@ function Ball(x, y, vx, vy) {
                   vzporedno.setMag(vzpMag);
                   pravokotno.setMag(praMag);
 
+                  let loc1 = new vector(this.loc.x,this.loc.y);
+                  let loc2 = new vector(this.loc.x,this.loc.y);
+                  let loc3 = new vector(this.loc.x,this.loc.y);
+
+                  loc1.add(this.v);
+                  loc2.add(pravokotno);
+                  pravokotno.inc(-1);
+                  loc3.add(pravokotno);
+                  pravokotno.inc(-1);
+
+                  let distance1 = distance_vec_vec(loc1,loc2);
+                  let distance2 = distance_vec_vec(loc1,loc3);
+                  if(distance1 < distance2) pravokotno.inc(-1);
+
+                  let bounceBack = new vector(vzporedno.x,vzporedno.y);
+                  bounceBack.inc(ballballbounce);
+                  bounceBack.inc(-1);
+                  vzporedno.inc(0);
+
                   this.v.inc(0);
                   this.v.add(pravokotno);
+                  this.v.add(bounceBack);
                   elements[i].update(vzporedno);
                }
             }
