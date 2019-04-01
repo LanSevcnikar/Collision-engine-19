@@ -124,6 +124,7 @@ function Ball(x, y, vx, vy) {
                         }
                     }
                 }
+                //testing
                 else if(elements[i].type == "ball"){
                     let dist = distance_vec_vec(this.loc,elements[i].loc);
                     if (dist <= elements[i].r+this.r){
