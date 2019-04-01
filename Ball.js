@@ -90,8 +90,13 @@ function Ball(x, y, vx, vy) {
                   while(elements[i].r+this.r >= distance_point_point(this.loc.x,this.loc.y,elements[i].loc.x,elements[i].loc.y)){
                      this.loc.add(newV);
                   }
-                  let vzporedno = new vector(this.loc.x-elements[i].loc.x,this.loc.y-elements[i].loc.y);
-                  let pravokotno = new vector(this.loc.y-elements[i].loc.y,this.loc.x-elements[i].loc.x);
+                  //let vzporedno = new vector(-(this.loc.x-elements[i].loc.x),-(this.loc.y-elements[i].loc.y));
+                  //let pravokotno = new vector(-(this.loc.y-elements[i].loc.y),-(this.loc.x-elements[i].loc.x));
+                  let vzporedno = new vector(0,0);
+                  vzporedno.set(this.loc.x-elements[i].loc.x,this.loc.y-elements[i].loc.y);
+                  let pravokotno = new vector(vzporedno.x,vzporedno.y);
+                  pravokotno.rtrR();
+                  pravokotno.inc(-1);
 
                   let x1 = this.v.x;
                   let y1 = this.v.y;
@@ -126,16 +131,15 @@ function Ball(x, y, vx, vy) {
 
                   let distance1 = distance_vec_vec(loc1,loc2);
                   let distance2 = distance_vec_vec(loc1,loc3);
-                  if(distance1 < distance2) pravokotno.inc(-1);
+                  if(distance1 > distance2) pravokotno.inc(-1);
 
                   let bounceBack = new vector(vzporedno.x,vzporedno.y);
-                  bounceBack.inc(ballballbounce);
-                  bounceBack.inc(-1);
-                  vzporedno.inc(0);
+                  bounceBack.inc(-ballballbounce);
 
                   this.v.inc(0);
                   this.v.add(pravokotno);
                   this.v.add(bounceBack);
+                  vzporedno.inc(1-ballballbounce)
                   elements[i].update(vzporedno);
                }
             }

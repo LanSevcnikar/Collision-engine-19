@@ -15,6 +15,7 @@ function setup() {
 	elements.push(new Line(10,10,10,h-10));
 	elements.push(new Line(w-10,10,w-10,h-10));
 	elements.push(new Line(10,h-10,h-10,h-10));
+
 	createCanvas(w, h);
 }
 
