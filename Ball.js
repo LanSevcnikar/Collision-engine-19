@@ -45,18 +45,22 @@ function Ball(x, y, vx, vy) {
                pt4 = (y1-y2)*(x3-x4);
 
                let py = (pt1-pt2)/(pt3-pt4);
-               let xmx = max(x1,x2);
-               let xmn = min(x1,x2);
-               let ymx = max(y1,y2);
-               let ymn = min(y1,y2);
+               let xmx = max(x1,x2)+1;
+               let xmn = min(x1,x2)-1;
+               let ymx = max(y1,y2)+1;
+               let ymn = min(y1,y2)-1;
 
-               ellipse(px,py,10,10);
-               ellipse(x1,y1,10,10);
-               ellipse(x2,y2,10,10);
-
-               if(xmn < px && px < xmx){
-                  if(ymn < py && py < ymn){
-                     console.log("Error");
+               if(xmn <= px && px <= xmx){
+                   if(ymn <= py && py <= ymx){
+                       let xmx = max(x3,x4)+1;
+                       let xmn = min(x3,x4)-1;
+                       let ymx = max(y3,y4)+1;
+                       let ymn = min(y3,y4)-1;
+                       if(xmn <= px && px <= xmx){
+                           if(ymn <= py && py <= ymx){
+                              this.loc.set(px,py);
+                          }
+                       }
                   }
                }
 

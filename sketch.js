@@ -1,7 +1,7 @@
 var w = window.innerWidth - 40;
 var h = window.innerHeight - 40;
 
-var g = 0.1;
+var g = 0.3;
 var elements = [];
 var hasnumber = 0;
 var bounce = 0.75;
@@ -16,7 +16,6 @@ function draw()	{
 	background(51);
 	stroke(230);
 	mouse();
-	frameRate(60);
 	for (let i = 0; i < elements.length; i++) {
 		if(elements[i].type == "ball"){
 			elements[i].show();
