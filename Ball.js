@@ -18,6 +18,52 @@ function Ball(x, y, vx, vy) {
         for (let i = 0; i < elements.length; i++) {
             if(elements[i].hash != this.hash){
                 if(elements[i].type == "line"){
+                    let pos = new vector(this.loc.x,this.loc.y);
+                    let newpos = new vector(this.loc.x,this.loc.y);
+                    let ptv = new vector(-this.v.x,-this.v.y);
+                    newpos.add(ptv);
+
+                    let x1 = newpos.x;
+                    let y1 = newpos.y;
+                    let x2 = pos.x;
+                    let y2 = pos.y;
+                    let x3 = elements[i].l1.x;
+                    let y3 = elements[i].l1.y;
+                    let x4 = elements[i].l2.x;
+                    let y4 = elements[i].l2.y;
+
+                    let pt1 = (x1*y2 - y1*x2)*(x3-x4);
+                    let pt2 = (x1-x2)*(x3*y4 - y3*x4);
+                    let pt3 = (x1-x2)*(y3-y4);
+                    let pt4 = (y1-y2)*(x3-x4);
+
+                    let px = (pt1-pt2)/(pt3-pt4);
+
+                    pt1 = (x1*y2 - y1*x2)*(y3-y4);
+                    pt2 = (y1-y2)*(x3*y4 - y3*x4);
+                    pt3 = (x1-x2)*(y3-y4);
+                    pt4 = (y1-y2)*(x3-x4);
+
+                    let py = (pt1-pt2)/(pt3-pt4);
+                    let xmx = max(x1,x2)+1;
+                    let xmn = min(x1,x2)-1;
+                    let ymx = max(y1,y2)+1;
+                    let ymn = min(y1,y2)-1;
+
+                    if(xmn <= px && px <= xmx){
+                        if(ymn <= py && py <= ymx){
+                            let xmx = max(x3,x4)+1;
+                            let xmn = min(x3,x4)-1;
+                            let ymx = max(y3,y4)+1;
+                            let ymn = min(y3,y4)-1;
+                            if(xmn <= px && px <= xmx){
+                                if(ymn <= py && py <= ymx){
+                                    this.loc.set(px,py);
+                                }
+                            }
+                        }
+                    }
+
                     let maxx = max(elements[i].l1.x,elements[i].l2.x) + this.r;
                     let maxy = max(elements[i].l1.y,elements[i].l2.y) + this.r;
                     let minx = min(elements[i].l1.x,elements[i].l2.x) - this.r;

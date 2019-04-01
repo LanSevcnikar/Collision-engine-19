@@ -27,7 +27,6 @@ function draw()	{
 	for (let i = 0; i < elements.length; i++) {
 		if(elements[i].type == "ball"){
 			elements[i].show();
-			//let grav = new vector(0,g);
 			elements[i].update(new vector(0,0));
 			}else{
 				elements[i].show();
