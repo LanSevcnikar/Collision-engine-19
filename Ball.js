@@ -11,9 +11,9 @@ function Ball(x, y, vx, vy) {
         ellipse(this.loc.x, this.loc.y, this.r*2);
     }
 
-    this.update = function(newV){
-        this.v.add(newV);
-        this.v.inc(air_friction);
+    this.update = function(){
+        this.a.y = g;
+        this.v.add(this.a);
         this.loc.add(this.v);
         for (let i = 0; i < elements.length; i++) {
             if(elements[i].hash != this.hash){
@@ -124,7 +124,6 @@ function Ball(x, y, vx, vy) {
                         }
                     }
                 }
-                //testing
                 else if(elements[i].type == "ball"){
                     let dist = distance_vec_vec(this.loc,elements[i].loc);
                     if (dist <= elements[i].r+this.r){
@@ -190,6 +189,7 @@ function Ball(x, y, vx, vy) {
                         elements[i].update(vzporedno);
                     }
                 }
+
             }
         }
         line(this.loc.x,this.loc.y,this.loc.x+this.v.x*15,this.loc.y+this.v.y*15);
