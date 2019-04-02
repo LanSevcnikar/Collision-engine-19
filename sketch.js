@@ -4,9 +4,9 @@ var h = window.innerHeight - 40;
 var g = 0.3;
 var elements = [];
 var hasnumber = 0;
-var bounce = 0.75;
-var friction = 0.99;
-var air_friction = 0.998;
+var bounce = 0.25;
+var friction = 0.98;
+var air_friction = 0.995;
 var ballballbounce = 0.2;
 
 function setup() {
@@ -21,7 +21,7 @@ function draw()	{
 	for (let i = 0; i < elements.length; i++) {
 		if(elements[i].type == "ball"){
 			elements[i].show();
-			elements[i].update();
+			elements[i].update(new vector(0,g));
 		}
 		else{
 			elements[i].show();

@@ -11,8 +11,8 @@ function Ball(x, y, vx, vy) {
         ellipse(this.loc.x, this.loc.y, this.r*2);
     }
 
-    this.update = function(){
-        this.a.y = g;
+    this.update = function(acs){
+        this.a = acs;
         this.v.add(this.a);
         this.loc.add(this.v);
         for (let i = 0; i < elements.length; i++) {
@@ -136,8 +136,6 @@ function Ball(x, y, vx, vy) {
                         while(elements[i].r+this.r >= distance_point_point(this.loc.x,this.loc.y,elements[i].loc.x,elements[i].loc.y)){
                             this.loc.add(newV);
                         }
-                        //let vzporedno = new vector(-(this.loc.x-elements[i].loc.x),-(this.loc.y-elements[i].loc.y));
-                        //let pravokotno = new vector(-(this.loc.y-elements[i].loc.y),-(this.loc.x-elements[i].loc.x));
                         let vzporedno = new vector(0,0);
                         vzporedno.set(this.loc.x-elements[i].loc.x,this.loc.y-elements[i].loc.y);
                         let pravokotno = new vector(vzporedno.x,vzporedno.y);

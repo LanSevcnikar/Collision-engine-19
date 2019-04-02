@@ -29,4 +29,8 @@ function vector(x, y) {
         this.x = this.x * new_mag / mag;
         this.y = this.y * new_mag / mag;
     }
+    this.getMag = function(){
+        let mag = sqrt(this.x*this.x+this.y*this.y);
+        return mag;
+    }
 }
